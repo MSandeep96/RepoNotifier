@@ -1,29 +1,25 @@
 from details import get_details
 
 class RepoWatch:
-	repo_url = ""
-	stars = -1
-	forks = -1
-	watchers = -1
 
 	def __init__(self,repo_url):
 		self.repo_url = repo_url
-		stars,forks,watchers = get_details(repo_url)
+		self.stars,self.forks,self.watchers = get_details(repo_url)
 
-	def checkUpdates():
+	def checkUpdates(self):
 		message = ""
-		nstars,nforks,nwatchers = get_details(repo_url)
+		nstars,nforks,nwatchers = get_details(self.repo_url)
 		if (nstars==-1):
 			return "Invalid"		#incase of error
-		if(nstars==stars and nforks==forks and nwatchers==watchers):
+		if(nstars==self.stars and nforks==self.forks and nwatchers==self.watchers):
 			return "Invalid"
-		if(nstars!=stars):
-			message += f"Stars updated by {nstars-stars}\n"
-		if(nforks!=forks):
-			message += f"Forks updated by {nforks-forks}\n"
-		if(nwatchers!=watcher):
-			message += f"Watchers updated by {nwatchers-watchers}\n"
-		stars = nstars
-		forks = nforks
-		watchers = nwatchers
+		if(nstars!=self.stars):
+			message += f"Stars updated by {nstars-self.stars}\n"
+		if(nforks!=self.forks):
+			message += f"Forks updated by {nforks-self.forks}\n"
+		if(nwatchers!=self.watchers):
+			message += f"Watchers updated by {nwatchers-self.watchers}\n"
+		self.stars = nstars
+		self.forks = nforks
+		self.watchers = nwatchers
 		return message
