@@ -23,12 +23,14 @@ def setTrigger():
 	time_diff_secs = time_diff.seconds + 1
 
 	trigger = Timer(time_diff_secs,update)
+	print("Trigger set")
 	trigger.start()
 
 
 def update():
 	msg = repo_watcher.checkUpdates()
 	if(msg != "Invalid"):
+		print("Message sent")
 		client.messages.create(
 			to=mob_no,
 			from_=from_no,
@@ -37,3 +39,4 @@ def update():
 	setTrigger()
 
 setTrigger()
+print("App launched")
