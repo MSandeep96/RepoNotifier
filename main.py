@@ -15,6 +15,13 @@ client = Client(account_id,auth_token)
 
 repo_watcher = RepoWatch(repo_url)
 
+def sendMsg(msg):
+	client.messages.create(
+			to=mob_no,
+			from_=from_no,
+			body=msg
+	)
+
 def setTrigger():
 	now = datetime.today()
 	tom = now.replace(day=now.day+1,hour=16,minute=0,second=0,microsecond=0)
@@ -31,12 +38,9 @@ def update():
 	msg = repo_watcher.checkUpdates()
 	if(msg != "Invalid"):
 		print("Message sent")
-		client.messages.create(
-			to=mob_no,
-			from_=from_no,
-			body=msg
-		)
+		sendMsg(msg)
 	setTrigger()
 
 setTrigger()
 print("App launched")
+sendMsg("App launched")
